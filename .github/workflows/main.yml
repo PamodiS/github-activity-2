@@ -1,0 +1,29 @@
+
+name: Update Portfolio HTML
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update_html:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Detect GitHub username
+      # and update index.html
+      - name: Update HTML
+        run: |
+          echo "<p>Updated by $GITHUB_ACTOR on $(date)</p>" >> index.html
+
+      # Display the updated HTML
+      - name: Verify HTML Update
+        run: cat index.html
